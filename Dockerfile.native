@@ -1,0 +1,6 @@
+FROM ghcr.io/graalvm/native-image-community:24-muslib AS builder
+WORKDIR /app
+COPY target/spring-boot-graalvm-native ./
+EXPOSE 8080
+RUN pwd
+ENTRYPOINT ["./spring-boot-graalvm-native"]
