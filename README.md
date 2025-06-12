@@ -19,6 +19,11 @@ Java GraalVM: 24
 Docker Desktop: Tested on 4.42.0
 ```
 
+## Install GraalVM JDK 24
+
+[Install GraalVM JDK 24](https://www.graalvm.org/latest/getting-started/) <br>
+Set ``GRAALVM_HOME`` as environment path.
+
 ## Clone this repository:
 
 ```bash
@@ -26,11 +31,13 @@ git clone https://github.com/deepaksorthiya/spring-boot-graalvm-native.git
 cd spring-boot-graalvm-native
 ```
 
-## Build Project:
+## Build Project Using Native Profile:
 
 ```bash
 ./mvnw -Pnative native:compile
 ```
+
+It will generate a ```spring-boot-graalvm-native``` in ```target``` folder.
 
 ## Run Project:
 
@@ -38,13 +45,38 @@ cd spring-boot-graalvm-native
 ./target/spring-boot-graalvm-native
 ```
 
-## (Optional)Build Docker Image(docker should be running):
+## Build Docker Image(docker should be running):
+
+Check [pom.xml](pom.xml) for native container image config
+
+```xml
+
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <configuration>
+        <image>
+            <name>deepaksorthiya/${project.artifactId}:latest</name>
+            <publish>false</publish>
+            <createdDate>${maven.build.timestamp}</createdDate>
+            <builder>bellsoft/buildpacks.builder:musl</builder>
+            <env>
+                <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+                <BP_JVM_VERSION>24</BP_JVM_VERSION>
+            </env>
+        </image>
+        <layers>
+            <enabled>true</enabled>
+        </layers>
+    </configuration>
+</plugin>
+```
 
 ```bash
 ./mvnw clean -Pnative spring-boot:build-image -DskipTests
 ```
 
-## (Optional)Running On Docker
+## Running On Docker
 
 ```bash
 docker run -p 8080:8080 --name spring-boot-graalvm-native deepaksorthiya/spring-boot-graalvm-native
@@ -64,7 +96,7 @@ http://localhost:8080/h2-console
 
 For further reference, please consider the following sections:
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
+* [Spring Boot GraalVM](https://docs.spring.io/spring-boot/how-to/native-image/developing-your-first-application.html)
 * [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/maven-plugin)
 * [Create an OCI image](https://docs.spring.io/spring-boot/maven-plugin/build-image.html)
 * [Spring Boot Actuator](https://docs.spring.io/spring-boot/reference/actuator/index.html)
