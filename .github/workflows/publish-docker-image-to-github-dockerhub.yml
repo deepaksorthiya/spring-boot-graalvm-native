@@ -26,7 +26,6 @@ jobs:
         with:
           java-version: '24'
           distribution: 'graalvm'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check Java Version
         run: |
@@ -35,7 +34,7 @@ jobs:
           java --version
           native-image --version
 
-      - name: Clean Build Test with Maven
+      - name: Create Native Container Image with GraalVM and Maven
         run: chmod +x mvnw && ./mvnw clean -Pnative spring-boot:build-image -DskipTests --file pom.xml --batch-mode --update-snapshots
 
       - name: Login to DockerHub
@@ -55,4 +54,6 @@ jobs:
         run: docker push deepaksorthiya/spring-boot-graalvm-native:latest
 
       - name: push to github
-        run: docker tag deepaksorthiya/spring-boot-graalvm-native:latest ${{ env.REGISTRY }}/deepaksorthiya/spring-boot-graalvm-native:latest && docker push ${{ env.REGISTRY }}/deepaksorthiya/spring-boot-graalvm-native:latest
+        run: |
+          docker tag deepaksorthiya/spring-boot-graalvm-native:latest ${{ env.REGISTRY }}/deepaksorthiya/spring-boot-graalvm-native:latest
+          docker push ${{ env.REGISTRY }}/deepaksorthiya/spring-boot-graalvm-native:latest

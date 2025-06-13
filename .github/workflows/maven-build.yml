@@ -28,22 +28,37 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Set up JDK 24
+        uses: actions/setup-java@v4
+        with:
+          java-version: '24'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Clean Build Test In Non-Native Mode with JDK and Maven
+        run: |
+          chmod +x mvnw
+          ./mvnw clean package --file pom.xml --batch-mode --update-snapshots
 
       - name: Set up GraalVM JDK 24
         uses: graalvm/setup-graalvm@v1
         with:
           java-version: '24'
           distribution: 'graalvm'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Check Java Version
+      - name: Check JVM and GraalVM Version
         run: |
           echo "GRAALVM_HOME: $GRAALVM_HOME"
           echo "JAVA_HOME: $JAVA_HOME"
           java --version
           native-image --version
 
-      - name: Clean Build Test with Maven
-        run: chmod +x mvnw && ./mvnw clean -Pnative native:compile --file pom.xml --batch-mode --update-snapshots
+      - name: Run Tests In Native Mode with GraalVM and Maven
+        run: ./mvnw -PnativeTest test --file pom.xml --batch-mode --update-snapshots
+
+      - name: Create Native Image Build with GraalVM and Maven
+        run: ./mvnw -Pnative native:compile -DskipTests --file pom.xml --batch-mode --update-snapshots
