@@ -36,7 +36,6 @@ jobs:
         with:
           java-version: '24'
           distribution: 'graalvm'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check Java Version
         run: |
@@ -46,4 +45,6 @@ jobs:
           native-image --version
 
       - name: Clean Build Test with Maven
-        run: chmod +x mvnw && ./mvnw clean -Pnative native:compile --file pom.xml --batch-mode --update-snapshots
+        run: |
+          chmod +x mvnw
+          ./mvnw clean -Pnative native:compile --file pom.xml --batch-mode --update-snapshots
