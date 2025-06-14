@@ -76,6 +76,10 @@ Check [pom.xml](pom.xml) for native container image config
 ./mvnw clean -Pnative spring-boot:build-image -DskipTests
 ```
 
+```bash
+docker build --progress=plain -f Dockerfile.native -t deepaksorthiya/spring-boot-graalvm-native .
+```
+
 ## Running On Docker
 
 ```bash
@@ -97,13 +101,14 @@ http://localhost:8080/h2-console
 For further reference, please consider the following sections:
 
 * [Spring Boot GraalVM](https://docs.spring.io/spring-boot/how-to/native-image/developing-your-first-application.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/maven-plugin)
+* [GraalVM Oracle Docs](https://docs.oracle.com/en/graalvm/jdk/24/docs/)
+* [GraalVM Native Dockerfile](https://www.graalvm.org/latest/reference-manual/native-image/guides/containerise-native-executable-and-run-in-docker-container/)
+* [Build Java Apps with Paketo Buildpacks](https://paketo.io/docs/howto/java/)
+* [GraalVM Native Image Support](https://docs.spring.io/spring-boot/reference/packaging/native-image/introducing-graalvm-native-images.html)
+* [Configure AOT settings in Build Plugin](https://docs.spring.io/spring-boot/how-to/aot.html)
 * [Create an OCI image](https://docs.spring.io/spring-boot/maven-plugin/build-image.html)
 * [Spring Boot Actuator](https://docs.spring.io/spring-boot/reference/actuator/index.html)
 * [Spring Web](https://docs.spring.io/spring-boot/reference/web/servlet.html)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/reference/data/sql.html#data.sql.jpa-and-spring-data)
-* [Validation](https://docs.spring.io/spring-boot//io/validation.html)
-* [Flyway Migration](https://docs.spring.io/spring-boot/how-to/data-initialization.html#howto.data-initialization.migration-tool.flyway)
 
 ## Guides
 

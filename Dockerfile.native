@@ -1,6 +1,6 @@
-FROM ghcr.io/graalvm/native-image-community:24-muslib AS builder
+FROM oraclelinux:9-slim
 WORKDIR /app
 COPY target/spring-boot-graalvm-native ./
 EXPOSE 8080
-RUN pwd
+RUN ls -a
 ENTRYPOINT ["./spring-boot-graalvm-native"]
