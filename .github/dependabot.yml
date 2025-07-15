@@ -12,6 +12,7 @@ updates:
       interval: "daily"
       time: "23:59"
       timezone: "Asia/Calcutta"
+    open-pull-requests-limit: 50
   # Enable version updates for GitHub Action
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -19,3 +20,4 @@ updates:
       interval: "daily"
       time: "23:59"
       timezone: "Asia/Calcutta"
+    open-pull-requests-limit: 50

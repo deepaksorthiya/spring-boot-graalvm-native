@@ -1,3 +1,7 @@
+####
+# This Dockerfile is used in order to build a container that runs the spring application in native (no JVM) mode.
+# microdnf package manager installed
+# Check https://github.com/oracle/container-images for further information about this image.
 FROM oraclelinux:9-slim
 WORKDIR /app
 COPY target/spring-boot-graalvm-native ./
