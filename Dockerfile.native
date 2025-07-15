@@ -2,6 +2,8 @@
 # This Dockerfile is used in order to build a container that runs the spring application in native (no JVM) mode.
 # microdnf package manager installed
 # Check https://github.com/oracle/container-images for further information about this image.
+# The UBI minimal image is bigger than the micro one but It contains more utilities such as the microdnf package manager
+# FROM registry.access.redhat.com/ubi9/ubi-minimal:9.5
 FROM oraclelinux:9-slim
 WORKDIR /app
 COPY target/spring-boot-graalvm-native ./
