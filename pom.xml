@@ -74,6 +74,10 @@
                         <name>deepaksorthiya/${project.artifactId}:latest</name>
                         <publish>false</publish>
                         <createdDate>${maven.build.timestamp}</createdDate>
+                        <!--
+                            Remove this builder when building docker image using spring-boot:build-image as jdk24
+                            is not support by this builder. Use Dockerfile to create small image
+                        -->
                         <builder>bellsoft/buildpacks.builder:musl</builder>
                         <env>
                             <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>

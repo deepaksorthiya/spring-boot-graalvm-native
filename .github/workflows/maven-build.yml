@@ -60,5 +60,5 @@ jobs:
       - name: Run Tests In Native Mode with GraalVM and Maven
         run: ./mvnw -PnativeTest test --file pom.xml --batch-mode --update-snapshots
 
-      - name: Create Native Image Build with GraalVM and Maven
-        run: ./mvnw -Pnative native:compile -DskipTests --file pom.xml --batch-mode --update-snapshots
+#      - name: Create Native Image Build with GraalVM and Maven
+#        run: ./mvnw -Pnative native:compile -DskipTests --file pom.xml --batch-mode --update-snapshots
