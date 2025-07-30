@@ -16,6 +16,7 @@ jobs:
     env:
       REGISTRY: ghcr.io
       IMAGE_NAME: ${{ github.repository }}
+      DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
 
     steps:
       - name: Checkout Repository
@@ -31,6 +32,8 @@ jobs:
         run: |
           echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
           echo "Tag name from github.ref_name: ${{  github.ref_name }}"
+          echo "The repository name is: ${{ github.event.repository.name }}"
+          echo "Dockerhub username is: ${{ vars.DOCKER_USERNAME }}"
           echo "GRAALVM_HOME: $GRAALVM_HOME"
           echo "JAVA_HOME: $JAVA_HOME"
           java --version
@@ -53,9 +56,14 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push to DockerHub
-        run: docker push deepaksorthiya/spring-boot-graalvm-native:latest
+        run: |
+          docker tag ${{ env.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{  github.ref_name }} ${{ env.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest
+          docker images
+          docker push --all-tags ${{ env.DOCKER_USERNAME }}/${{ github.event.repository.name }}
 
       - name: Push to GitHub
         run: |
-          docker tag deepaksorthiya/spring-boot-graalvm-native:latest ${{ env.REGISTRY }}/deepaksorthiya/spring-boot-graalvm-native:latest
-          docker push ${{ env.REGISTRY }}/deepaksorthiya/spring-boot-graalvm-native:latest
+          docker tag ${{ env.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest ${{ env.REGISTRY }}/${{ github.repository }}:latest
+          docker tag ${{ env.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest ${{ env.REGISTRY }}/${{ github.repository }}:${{  github.ref_name }}
+          docker images
+          docker push --all-tags ${{ env.REGISTRY }}/${{ github.repository }}
