@@ -57,13 +57,13 @@ jobs:
 
       - name: Push to DockerHub
         run: |
-          docker tag ${{ env.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{  github.ref_name }} ${{ env.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest
-          docker images
+          docker tag ${{ env.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest ${{ env.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{  github.ref_name }}
           docker push --all-tags ${{ env.DOCKER_USERNAME }}/${{ github.event.repository.name }}
+          docker images
 
       - name: Push to GitHub
         run: |
           docker tag ${{ env.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest ${{ env.REGISTRY }}/${{ github.repository }}:latest
-          docker tag ${{ env.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest ${{ env.REGISTRY }}/${{ github.repository }}:${{  github.ref_name }}
-          docker images
+          docker tag ${{ env.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{  github.ref_name }} ${{ env.REGISTRY }}/${{ github.repository }}:${{  github.ref_name }}
           docker push --all-tags ${{ env.REGISTRY }}/${{ github.repository }}
+          docker images

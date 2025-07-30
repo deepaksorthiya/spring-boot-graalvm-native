@@ -71,7 +71,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <image>
-                        <name>deepaksorthiya/${project.artifactId}:${project.version}</name>
+                        <name>deepaksorthiya/${project.artifactId}:latest</name>
                         <publish>false</publish>
                         <createdDate>${maven.build.timestamp}</createdDate>
                         <!--
