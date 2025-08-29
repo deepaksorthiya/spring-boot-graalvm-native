@@ -1,0 +1,41 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+  "name": "Ubuntu",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+    "ghcr.io/devcontainers/features/java:1": {
+      "jdkDistro": "oracle",
+      "version": "24",
+      "installMaven": true,
+      "mavenVersion": "3.9.11"
+    }
+  },
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  // "features": {},
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "mvn clean package",
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "settings": {
+      },
+      // Add the IDs of extensions to install in the container.
+      "extensions": [
+        "redhat.java",
+        "vscjava.vscode-java-pack"
+      ]
+      // Uncomment to set a specific VS Code version. More info: https://aka.ms/dev-containers-vscode-version.
+      // "vscodeVersion": "1.60.0"
+    }
+  }
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  //"remoteUser": "root"
+}

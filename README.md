@@ -21,6 +21,12 @@ Docker Desktop: Tested on 4.42.0
 
 ## Install GraalVM JDK 24
 
+Using [SDKMAN](https://sdkman.io/install) (Recommended)
+
+```bash
+sdk install java 24.0.2-graal
+```
+
 [Install GraalVM JDK 24](https://www.graalvm.org/latest/getting-started/) <br>
 Set ``GRAALVM_HOME`` as environment path.
 
