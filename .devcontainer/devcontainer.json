@@ -5,7 +5,17 @@
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
-    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+    // share host docker
+    //"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+    // new separate docker not share host docker
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "moby": true,
+      "azureDnsAutoDetection": true,
+      "installDockerBuildx": true,
+      "installDockerComposeSwitch": true,
+      "version": "latest",
+      "dockerDashComposeVersion": "v2"
+    },
     "ghcr.io/devcontainers/features/java:1": {
       "jdkDistro": "oracle",
       "version": "24",
