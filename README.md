@@ -12,22 +12,22 @@
 ## Requirements:
 
 ```
-Git: 2.49.0
-Spring Boot: 3.5.0
+Git: 2.50+
+Spring Boot: 3.5.16
 Maven: 3.9+
-Java GraalVM: 24
+Java GraalVM: 25
 Docker Desktop: Tested on 4.42.0
 ```
 
-## Install GraalVM JDK 24
+## Install GraalVM JDK 25
 
 Using [SDKMAN](https://sdkman.io/install) (Recommended)
 
 ```bash
-sdk install java 24.0.2-graal
+sdk install java 25.0.0-graal
 ```
 
-[Install GraalVM JDK 24](https://www.graalvm.org/latest/getting-started/) <br>
+[Install GraalVM JDK 25](https://www.graalvm.org/latest/getting-started/) <br>
 Set ``GRAALVM_HOME`` as environment path.
 
 ## Clone this repository:
@@ -68,7 +68,8 @@ Check [pom.xml](pom.xml) for native container image config
             <builder>bellsoft/buildpacks.builder:musl</builder>
             <env>
                 <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
-                <BP_JVM_VERSION>24</BP_JVM_VERSION>
+                <BP_SPRING_AOT_ENABLED>true</BP_SPRING_AOT_ENABLED>
+                <BP_JVM_VERSION>25</BP_JVM_VERSION>
             </env>
         </image>
         <layers>
@@ -107,7 +108,7 @@ http://localhost:8080/h2-console
 For further reference, please consider the following sections:
 
 * [Spring Boot GraalVM](https://docs.spring.io/spring-boot/how-to/native-image/developing-your-first-application.html)
-* [GraalVM Oracle Docs](https://docs.oracle.com/en/graalvm/jdk/24/docs/)
+* [GraalVM Oracle Docs](https://docs.oracle.com/en/graalvm/jdk/25/docs/)
 * [GraalVM Native Dockerfile](https://www.graalvm.org/latest/reference-manual/native-image/guides/containerise-native-executable-and-run-in-docker-container/)
 * [Build Java Apps with Paketo Buildpacks](https://paketo.io/docs/howto/java/)
 * [GraalVM Native Image Support](https://docs.spring.io/spring-boot/reference/packaging/native-image/introducing-graalvm-native-images.html)

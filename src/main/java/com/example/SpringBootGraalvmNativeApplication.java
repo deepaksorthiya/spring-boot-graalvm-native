@@ -1,11 +1,7 @@
 package com.example;
 
-import com.example.dto.CashCardDto;
-import com.example.dto.UserDto;
+import com.example.config.AotNativeRuntimeHints;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.aot.hint.RuntimeHints;
-import org.springframework.aot.hint.RuntimeHintsRegistrar;
-import org.springframework.aot.hint.annotation.RegisterReflectionForBinding;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportRuntimeHints;
@@ -24,20 +20,12 @@ import java.util.Map;
 
 @SpringBootApplication
 @RestController
-@ImportRuntimeHints(SpringBootGraalvmNativeApplication.Hints.class)
-@RegisterReflectionForBinding({CashCardDto.class, UserDto.class})
+@ImportRuntimeHints(AotNativeRuntimeHints.class)
+//@RegisterReflectionForBinding({CashCardDto.class, UserDto.class}) // another way to register reflection hints for GraalVM native image
 public class SpringBootGraalvmNativeApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootGraalvmNativeApplication.class, args);
-    }
-
-    static class Hints implements RuntimeHintsRegistrar {
-
-        @Override
-        public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
-            hints.resources().registerPattern("cashcard-banner.txt");
-        }
     }
 
     @GetMapping(value = {"/", "/server-info"}, produces = MediaType.APPLICATION_JSON_VALUE)
