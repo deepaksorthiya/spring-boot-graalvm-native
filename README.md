@@ -1,11 +1,19 @@
-[![Java Maven Build Test](https://github.com/deepaksorthiya/spring-boot-graalvm-native/actions/workflows/maven-build.yml/badge.svg)](https://github.com/deepaksorthiya/spring-boot-graalvm-native/actions/workflows/maven-build.yml) <br>
-[![Docker Pulls](https://img.shields.io/docker/pulls/deepaksorthiya/spring-boot-graalvm-native)](https://hub.docker.com/r/deepaksorthiya/spring-boot-graalvm-native)
+<h1 style="text-align: center;">Spring Boot GraalVM Native Image</h1>
 
----
-
-### ** Spring Boot GraalVM Native Image **
-
----
+<p style="text-align: center;">
+  <a href="https://github.com/deepaksorthiya/spring-boot-graalvm-native/actions/workflows/maven-jvm-non-native-build.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/deepaksorthiya/spring-boot-graalvm-native/maven-jvm-non-native-build.yml?style=for-the-badge&label=JVM%20Maven%20Build" alt="JVM Maven Build"/>
+  </a>  
+  <a href="https://github.com/deepaksorthiya/spring-boot-graalvm-native/actions/workflows/maven-graalvm-native-build.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/deepaksorthiya/spring-boot-graalvm-native/maven-graalvm-native-build.yml?style=for-the-badge&label=GraalVM%20Maven%20Build" alt="GraalVM Maven Build"/>
+  </a>
+  <a href="https://hub.docker.com/r/deepaksorthiya/spring-boot-graalvm-native">
+    <img src="https://img.shields.io/docker/pulls/deepaksorthiya/spring-boot-graalvm-native?style=for-the-badge" alt="Docker"/>
+  </a>
+  <a href="https://spring.io/projects/spring-boot">
+    <img src="https://img.shields.io/badge/spring--boot-3.5.16-brightgreen?logo=springboot&style=for-the-badge" alt="Spring Boot"/>
+  </a>
+</p>
 
 # Getting Started
 
@@ -14,7 +22,7 @@
 ```
 Git: 2.50+
 Spring Boot: 3.5.16
-Maven: 3.9+
+Maven: 3.10.0+
 Java GraalVM: 25
 Docker Desktop: Tested on 4.42.0
 ```
@@ -51,7 +59,7 @@ It will generate a ```spring-boot-graalvm-native``` in ```target``` folder.
 ./target/spring-boot-graalvm-native
 ```
 
-## Build Docker Image(docker should be running):
+## Build Docker Image (docker should be running):
 
 Check [pom.xml](pom.xml) for native container image config
 
