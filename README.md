@@ -22,7 +22,7 @@
 ```
 Git: 2.50+
 Spring Boot: 3.5.16
-Maven: 3.10.0+
+Maven: 3.10+
 Java GraalVM: 25
 Docker Desktop: Tested on 4.42.0
 ```
@@ -47,16 +47,38 @@ cd spring-boot-graalvm-native
 
 ## Build Project Using Native Profile:
 
+Build Native Image
+
 ```bash
 ./mvnw -Pnative native:compile
+```
+
+Build with AOT
+
+```bash
+./mvnw -Paot clean package -DskipTests
 ```
 
 It will generate a ```spring-boot-graalvm-native``` in ```target``` folder.
 
 ## Run Project:
 
+Run native image
+
 ```bash
 ./target/spring-boot-graalvm-native
+```
+
+Run AOT Processed Build
+
+```bash
+./mvnw -Paot spring-boot:run
+```
+
+OR
+
+```bash
+java -Dspring.aot.enabled=true -jar target/spring-boot-graalvm-native-aot.jar
 ```
 
 ## Build Docker Image (docker should be running):
@@ -103,8 +125,16 @@ docker run -p 8080:8080 --name spring-boot-graalvm-native deepaksorthiya/spring-
 
 ## Testing
 
+Testing native image
+
 ```bash
 ./mvnw -PnativeTest test
+```
+
+Testing in AOT mode
+
+```bash
+./mvnw -Paot clean test
 ```
 
 http://localhost:8080

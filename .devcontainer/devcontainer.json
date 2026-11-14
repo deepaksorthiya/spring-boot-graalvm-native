@@ -20,7 +20,7 @@
       "jdkDistro": "oracle",
       "version": "25",
       "installMaven": true,
-      "mavenVersion": "3.9.16"
+      "mavenVersion": "3.10.0"
     }
   },
   // Features to add to the dev container. More info: https://containers.dev/features.
